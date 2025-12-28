@@ -265,7 +265,7 @@ Out [14]:
 
 <img width="304" height="129" alt="image" src="https://github.com/user-attachments/assets/4ff49559-53dc-4ac8-ae63-5e3021256553" />
 
---> Highest contributor in refund transactions is source_id 38 with volume 36,527,454,759 contributes 59.10% of refund transactions.
+--> Highest contributor in refund transactions is source_id 38 which contributes 59.10% of refund transactions with volume 36,527,454,759.
 
 ### 5.	Define type of transactions (‘transaction_type’) for each row, given:
 - transType = 2 & merchant_id = 1205: Bank Transfer Transaction
