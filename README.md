@@ -227,7 +227,7 @@ Out [11]:
 
 <img width="205" height="127" alt="image" src="https://github.com/user-attachments/assets/2c5deebb-aa72-4842-84d3-ea65b5194fc4" />
 
---> Abnormal Products against the rule are Product ID 3, 1976, 10033. They are not owned by any team.
+--> Abnormal products against the rule are product_id 3, 1976, 10033. They are not owned by any team.
 
 ### 3.	Find the team has had the lowest performance (lowest volume) since Q2.2023. Find the category that contributes the least to that team.
 In [12]:
@@ -240,7 +240,7 @@ Out [12]:
 
 <img width="199" height="125" alt="image" src="https://github.com/user-attachments/assets/9d6fd7ff-9517-46eb-8c9d-30bc63e908fb" />
 
---> Lowest Performance Team since Q2.2023 is Team APS with volume 51,141,753.
+--> Lowest performance team since Q2.2023 is team APS with volume 51,141,753.
 
 In [13]:
 ```python
@@ -251,7 +251,7 @@ Out [13]:
 
 <img width="179" height="94" alt="image" src="https://github.com/user-attachments/assets/aad28c38-ee94-417b-81cb-43ba7cf5ea1b" />
 
---> The category that contributes the least to Team APS since Q2.2023 is Category PXXXXXE with volume 25,232,438.
+--> The category that contributes the least to team APS since Q2.2023 is category PXXXXXE with volume 25,232,438.
 
 ### 4.	Find the contribution of source_ids of refund transactions (payment_group = ‘refund’), what is the source_id with the highest contribution?
 In [14]:
@@ -265,7 +265,7 @@ Out [14]:
 
 <img width="304" height="129" alt="image" src="https://github.com/user-attachments/assets/4ff49559-53dc-4ac8-ae63-5e3021256553" />
 
---> Highest Contributor in Refund Transactions is Source ID 38 with volume 36,527,454,759 contributes 59.10% of refund transactions.
+--> Highest contributor in refund transactions is source_id 38 with volume 36,527,454,759 contributes 59.10% of refund transactions.
 
 ### 5.	Define type of transactions (‘transaction_type’) for each row, given:
 - transType = 2 & merchant_id = 1205: Bank Transfer Transaction
