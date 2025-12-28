@@ -275,6 +275,7 @@ Out [14]:
 - transType = 8, merchant_id = 2250: Transfer Money Transaction
 - transType = 8 & others merchant_id: Split Bill Transaction
 - Remained cases are invalid transactions
+
 In [15]:
 ```python
 conditions = [(df_transaction["transType"] == 2) & (df_transaction["merchant_id"] == 1205),
