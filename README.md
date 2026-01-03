@@ -4,10 +4,10 @@ This project analyzes **payment and transaction data in an e-wallet system** wit
 ---
 
 ## Table of Contents
-- Overview
-- Exploratory Data Analysis (EDA)
-- Transaction & Payment Analysis
-- Insights & Recommendations
+1. Overview
+2. Exploratory Data Analysis (EDA)
+3. Transaction & Payment Analysis
+4. Insights & Recommendations
 
 ---
 
