@@ -224,7 +224,7 @@ Out [10]:
 
 <img width="230" height="127" alt="image" src="https://github.com/user-attachments/assets/be87b858-9f74-4da6-8000-5d6db728c7d6" />
 
-**Insight:**
+💡 **Insight:**
 Transaction volume is highly concentrated. Product 1976 dominates the system, contributing a disproportionately large share compared to other products. This creates a single point of dependency risk.
 
 ### 2.	Given that 1 product_id is only owed by 1 team, are there any abnormal products against this rule?
@@ -237,7 +237,7 @@ Out [11]:
 
 <img width="205" height="127" alt="image" src="https://github.com/user-attachments/assets/2c5deebb-aa72-4842-84d3-ea65b5194fc4" />
 
-**Insight:**
+💡 **Insight:**
 Several products (including the highest-volume product) are not assigned to any team, indicating data governance and ownership issues that can distort performance evaluation.
 
 ### 3.	Find the team has had the lowest performance (lowest volume) since Q2.2023. Find the category that contributes the least to that team.
@@ -260,7 +260,7 @@ Out [13]:
 
 <img width="179" height="94" alt="image" src="https://github.com/user-attachments/assets/aad28c38-ee94-417b-81cb-43ba7cf5ea1b" />
 
-**Insight:**
+💡 **Insight:**
 Team APS has the lowest performance, with one category contributing minimally, suggesting ineffective product or category strategy within the team.
 
 ### 4.	Find the contribution of source_ids of refund transactions (payment_group = ‘refund’), what is the source_id with the highest contribution?
@@ -275,7 +275,7 @@ Out [14]:
 
 <img width="304" height="129" alt="image" src="https://github.com/user-attachments/assets/4ff49559-53dc-4ac8-ae63-5e3021256553" />
 
-**Insight:**
+💡 **Insight:**
 Refund transactions are heavily dominated by a single source (Source ID 38), which signals a systemic issue rather than random user behavior.
 
 ### 5.	Define type of transactions (‘transaction_type’) for each row, given:
@@ -314,7 +314,7 @@ Out [15]:
 
 <img width="1034" height="407" alt="image" src="https://github.com/user-attachments/assets/3a4acdc6-3dfd-4929-b929-636215690b38" />
 
-**Insight:**
+💡 **Insight:**
 Top Up transactions are the core driver of volume, while Payment transactions are high-frequency but lower in value. User behavior aligns with a wallet-first ecosystem.
 
 ### 6.	Of each transaction type (excluding invalid transactions): find the number of transactions, volume, senders and receivers.
@@ -329,7 +329,7 @@ Out [16]:
 
 <img width="629" height="224" alt="image" src="https://github.com/user-attachments/assets/2a9b197e-025d-45f3-95b0-d5039b41fdd7" />
 
-**Insight:**
+💡 **Insight:**
 Different transaction types serve different financial behaviors: Payments are daily usage, while Transfers and Bank Transfers carry higher financial risk.
 
 ---
