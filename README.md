@@ -1,5 +1,10 @@
 # Python | E-Wallet Transaction And Payment Analysis
+
+<img width="1080" height="675" alt="ewallet analysis2" src="https://github.com/user-attachments/assets/87af181a-87f5-4b4b-8b16-36534df38572" />
+
 This project analyzes **payment and transaction data in an e-wallet system** with the goal of understanding product performance, transaction behavior, and operational anomalies across teams and transaction types. **The entire analysis is conducted using Python**, following a data-driven and business-oriented approach.
+- **Author**: Le Dang Kim Ngan
+- **Tool Used**: Python
 
 ---
 
@@ -219,6 +224,9 @@ Out [10]:
 
 <img width="230" height="127" alt="image" src="https://github.com/user-attachments/assets/be87b858-9f74-4da6-8000-5d6db728c7d6" />
 
+**Insight:**
+Transaction volume is highly concentrated. Product 1976 dominates the system, contributing a disproportionately large share compared to other products. This creates a single point of dependency risk.
+
 ### 2.	Given that 1 product_id is only owed by 1 team, are there any abnormal products against this rule?
 In [11]:
 ```python
@@ -229,7 +237,8 @@ Out [11]:
 
 <img width="205" height="127" alt="image" src="https://github.com/user-attachments/assets/2c5deebb-aa72-4842-84d3-ea65b5194fc4" />
 
---> Abnormal products against the rule are product_id 3, 1976, 10033. They are not owned by any team.
+**Insight:**
+Several products (including the highest-volume product) are not assigned to any team, indicating data governance and ownership issues that can distort performance evaluation.
 
 ### 3.	Find the team has had the lowest performance (lowest volume) since Q2.2023. Find the category that contributes the least to that team.
 In [12]:
@@ -242,8 +251,6 @@ Out [12]:
 
 <img width="199" height="125" alt="image" src="https://github.com/user-attachments/assets/9d6fd7ff-9517-46eb-8c9d-30bc63e908fb" />
 
---> Lowest performance team since Q2.2023 is team APS with volume 51,141,753.
-
 In [13]:
 ```python
 # Find the category that contributes the least to that team.
@@ -253,7 +260,8 @@ Out [13]:
 
 <img width="179" height="94" alt="image" src="https://github.com/user-attachments/assets/aad28c38-ee94-417b-81cb-43ba7cf5ea1b" />
 
---> The category that contributes the least to team APS since Q2.2023 is category PXXXXXE with volume 25,232,438.
+**Insight:**
+Team APS has the lowest performance, with one category contributing minimally, suggesting ineffective product or category strategy within the team.
 
 ### 4.	Find the contribution of source_ids of refund transactions (payment_group = ‘refund’), what is the source_id with the highest contribution?
 In [14]:
@@ -267,7 +275,8 @@ Out [14]:
 
 <img width="304" height="129" alt="image" src="https://github.com/user-attachments/assets/4ff49559-53dc-4ac8-ae63-5e3021256553" />
 
---> Highest contributor in refund transactions is source_id 38 which contributes 59.10% of refund transactions with volume 36,527,454,759.
+**Insight:**
+Refund transactions are heavily dominated by a single source (Source ID 38), which signals a systemic issue rather than random user behavior.
 
 ### 5.	Define type of transactions (‘transaction_type’) for each row, given:
 - transType = 2 & merchant_id = 1205: Bank Transfer Transaction
@@ -305,6 +314,9 @@ Out [15]:
 
 <img width="1034" height="407" alt="image" src="https://github.com/user-attachments/assets/3a4acdc6-3dfd-4929-b929-636215690b38" />
 
+**Insight:**
+Top Up transactions are the core driver of volume, while Payment transactions are high-frequency but lower in value. User behavior aligns with a wallet-first ecosystem.
+
 ### 6.	Of each transaction type (excluding invalid transactions): find the number of transactions, volume, senders and receivers.
 In [16]:
 ```python
@@ -316,6 +328,9 @@ df_transaction[df_transaction["transaction_type"] != "Invalid Transaction"].grou
 Out [16]:
 
 <img width="629" height="224" alt="image" src="https://github.com/user-attachments/assets/2a9b197e-025d-45f3-95b0-d5039b41fdd7" />
+
+**Insight:**
+Different transaction types serve different financial behaviors: Payments are daily usage, while Transfers and Bank Transfers carry higher financial risk.
 
 ---
 
