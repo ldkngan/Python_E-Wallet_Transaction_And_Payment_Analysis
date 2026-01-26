@@ -8,7 +8,7 @@ This project analyzes **payment and transaction data in an e-wallet system** wit
 
 ---
 
-## Table of Contents
+## 📋 Table of Contents
 1. Overview
 2. Exploratory Data Analysis (EDA)
 3. Transaction & Payment Analysis
@@ -16,8 +16,8 @@ This project analyzes **payment and transaction data in an e-wallet system** wit
 
 ---
 
-## Overview
-### Objectives
+## ✨ Overview
+### 🎯 Objectives
 - Practice **SQL-style analytical thinking** using pandas (groupby, joins, conditional mapping, time filtering).
 - Analyze **product and team performance** based on payment volume.
 - Detect **data integrity issues**, such as violations of product ownership rules.
@@ -25,7 +25,7 @@ This project analyzes **payment and transaction data in an e-wallet system** wit
 - Apply **business rules to classify transactions** into meaningful transaction types.
 - Produce **clear, query-like outputs** suitable for decision-making.
 
-### Business Questions
+### 🔖 Business Questions
 1. Identify the **top 3 products** with the highest payment volume.
 2. Verify whether any **products are owned by more than one team**, against the defined business rule.
 3. Determine the **lowest-performing team since Q2 2023** and the **least contributing product category** within that team.
@@ -33,7 +33,7 @@ This project analyzes **payment and transaction data in an e-wallet system** wit
 5. Classify each transaction into a **business-defined transaction type** based on transaction codes and merchant IDs.
 6. For each valid transaction type, compute key metrics such as **number of transactions, total volume, unique senders, and receivers**.
 
-### Dataset Description
+### 📂 Dataset Description
 <details>
   <summary> Table 1: Payment Report - Monthly payment volume at the product level (Click to see detail)</summary>
   
@@ -79,7 +79,7 @@ By combining these datasets, the project aims to **answer key business and opera
 
 ---
 
-## Exploratory Data Analysis (EDA)
+## ⚙️ Exploratory Data Analysis (EDA)
 In [1]:
 ```python
 # Import libraries
@@ -214,8 +214,8 @@ memory usage: 90.9+ MB
 
 ---
 
-## Transaction & Payment Analysis
-### 1. Top 3 product_ids with the highest volume.
+## 💻 Transaction & Payment Analysis
+### 📌 1. Top 3 product_ids with the highest volume.
 In [10]:
 ```python
 df_payment_enriched.groupby("product_id", as_index=False).agg({"volume":"sum"}).sort_values("volume", ascending = False).head(3)
@@ -227,7 +227,7 @@ Out [10]:
 💡 **Insight:**
 Transaction volume is highly concentrated. Product 1976 dominates the system, contributing a disproportionately large share compared to other products. This creates a single point of dependency risk.
 
-### 2.	Given that 1 product_id is only owed by 1 team, are there any abnormal products against this rule?
+### 📌 2.	Given that 1 product_id is only owed by 1 team, are there any abnormal products against this rule?
 In [11]:
 ```python
 df_abnormal = df_payment_enriched.groupby("product_id", as_index=False)["team_own"].nunique()
@@ -240,7 +240,7 @@ Out [11]:
 💡 **Insight:**
 Several products (including the highest-volume product) are not assigned to any team, indicating data governance and ownership issues that can distort performance evaluation.
 
-### 3.	Find the team has had the lowest performance (lowest volume) since Q2.2023. Find the category that contributes the least to that team.
+### 📌 3.	Find the team has had the lowest performance (lowest volume) since Q2.2023. Find the category that contributes the least to that team.
 In [12]:
 ```python
 # Find the team has had the lowest performance (lowest volume) since Q2.2023.
@@ -263,7 +263,7 @@ Out [13]:
 💡 **Insight:**
 Team APS has the lowest performance, with one category contributing minimally, suggesting ineffective product or category strategy within the team.
 
-### 4.	Find the contribution of source_ids of refund transactions (payment_group = ‘refund’), what is the source_id with the highest contribution?
+### 📌 4.	Find the contribution of source_ids of refund transactions (payment_group = ‘refund’), what is the source_id with the highest contribution?
 In [14]:
 ```python
 df_refund = df_payment_enriched[df_payment_enriched["payment_group"] == "refund"]
@@ -278,7 +278,7 @@ Out [14]:
 💡 **Insight:**
 Refund transactions are heavily dominated by a single source (Source ID 38), which signals a systemic issue rather than random user behavior.
 
-### 5.	Define type of transactions (‘transaction_type’) for each row, given:
+### 📌 5.	Define type of transactions (‘transaction_type’) for each row, given:
 - transType = 2 & merchant_id = 1205: Bank Transfer Transaction
 - transType = 2 & merchant_id = 2260: Withdraw Money Transaction
 - transType = 2 & merchant_id = 2270: Top Up Money Transaction
@@ -317,7 +317,7 @@ Out [15]:
 💡 **Insight:**
 Top Up transactions are the core driver of volume, while Payment transactions are high-frequency but lower in value. User behavior aligns with a wallet-first ecosystem.
 
-### 6.	Of each transaction type (excluding invalid transactions): find the number of transactions, volume, senders and receivers.
+### 📌 6.	Of each transaction type (excluding invalid transactions): find the number of transactions, volume, senders and receivers.
 In [16]:
 ```python
 df_transaction[df_transaction["transaction_type"] != "Invalid Transaction"].groupby("transaction_type", as_index=False).agg({"transaction_id":"nunique",
@@ -334,8 +334,8 @@ Different transaction types serve different financial behaviors: Payments are da
 
 ---
 
-## Insights & Recommendations
-| Questions | Insights | Recommendations |
+## 🚀 Insights & Recommendations
+| Question | Insight | Recommendation |
 |---------|----------|-----------------|
 | Top 3 products with the highest volume | Transaction volume is highly concentrated. Product 1976 dominates the system, contributing a disproportionately large share compared to other products. This creates a single point of dependency risk. | Reduce dependency on Product 1976 by identifying and scaling other high-potential products. Perform deeper analysis on product diversification opportunities. |
 | Check rule: each product is owned by one team | Several products (including the highest-volume product) are not assigned to any team, indicating data governance and ownership issues that can distort performance evaluation. | Enforce strict product–team ownership rules in the data model and add validation checks in the data pipeline to prevent missing ownership. |
