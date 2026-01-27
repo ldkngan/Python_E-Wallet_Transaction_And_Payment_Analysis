@@ -218,6 +218,8 @@ memory usage: 90.9+ MB
 
 ## 💻 Transaction & Payment Analysis
 ### 📌 1. Top 3 product_ids with the highest volume.
+**Business Objective:** Assess revenue concentration across products to identify dependency risks and evaluate whether the current product portfolio is sufficiently diversified to support sustainable growth.
+
 In [10]:
 ```python
 df_payment_enriched.groupby("product_id", as_index=False).agg({"volume":"sum"}).sort_values("volume", ascending = False).head(3)
@@ -230,6 +232,8 @@ Out [10]:
 Transaction volume is highly concentrated. Product 1976 dominates the system, contributing a disproportionately large share compared to other products. This creates a single point of dependency risk.
 
 ### 📌 2.	Given that 1 product_id is only owed by 1 team, are there any abnormal products against this rule?
+**Business Objective:** Ensure data governance integrity by validating clear product ownership, enabling accurate performance measurement, accountability, and team-level decision-making.
+
 In [11]:
 ```python
 df_abnormal = df_payment_enriched.groupby("product_id", as_index=False)["team_own"].nunique()
@@ -243,6 +247,8 @@ Out [11]:
 Several products (including the highest-volume product) are not assigned to any team, indicating data governance and ownership issues that can distort performance evaluation.
 
 ### 📌 3.	Find the team has had the lowest performance (lowest volume) since Q2.2023. Find the category that contributes the least to that team.
+**Business Objective:** Identify underperforming teams and categories to support targeted performance reviews, strategic realignment, and more effective allocation of business resources.
+
 In [12]:
 ```python
 # Find the team has had the lowest performance (lowest volume) since Q2.2023.
@@ -266,6 +272,8 @@ Out [13]:
 Team APS has the lowest performance, with one category contributing minimally, suggesting ineffective product or category strategy within the team.
 
 ### 📌 4.	Find the contribution of source_ids of refund transactions (payment_group = ‘refund’), what is the source_id with the highest contribution?
+**Business Objective:** Detect abnormal refund patterns to uncover potential systemic issues, operational failures, or fraud risks that could negatively impact financial stability and customer trust.
+
 In [14]:
 ```python
 df_refund = df_payment_enriched[df_payment_enriched["payment_group"] == "refund"]
@@ -288,6 +296,8 @@ Refund transactions are heavily dominated by a single source (Source ID 38), whi
 - transType = 8, merchant_id = 2250: Transfer Money Transaction
 - transType = 8 & others merchant_id: Split Bill Transaction
 - Remained cases are invalid transactions
+
+**Business Objective:** Understand how different transaction types contribute to overall volume and frequency in order to interpret user behavior and validate the platform’s core business model.
 
 In [15]:
 ```python
@@ -320,6 +330,8 @@ Out [15]:
 Top Up transactions are the core driver of volume, while Payment transactions are high-frequency but lower in value. User behavior aligns with a wallet-first ecosystem.
 
 ### 📌 6.	Of each transaction type (excluding invalid transactions): find the number of transactions, volume, senders and receivers.
+**Business Objective:** Evaluate the role and risk profile of each transaction type to inform differentiated operational, product, and risk management strategies.
+
 In [16]:
 ```python
 df_transaction[df_transaction["transaction_type"] != "Invalid Transaction"].groupby("transaction_type", as_index=False).agg({"transaction_id":"nunique",
