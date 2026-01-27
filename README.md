@@ -80,6 +80,8 @@ By combining these datasets, the project aims to **answer key business and opera
 ---
 
 ## ⚙️ Exploratory Data Analysis (EDA)
+In this stage, Exploratory Data Analysis (EDA) is conducted to assess data quality and identify potential issues before further analysis. The dataset is examined for missing values, duplicated records, and irrelevant fields across key tables.
+
 In [1]:
 ```python
 # Import libraries
